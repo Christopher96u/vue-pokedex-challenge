@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+@import './_variable.scss';
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $background-base-color;
+  font-size: 18px;
+  font-family: 'Lato', sans-serif;
+}
+
+h1 {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+p {
+  font-weight: 400;
+}
+.container-fluid {
+  width: 100%;
+}
+.container {
+  max-width: 50%;
+  margin: 0 auto;
+}
+.icon {
+  height: 25px;
+  width: 25px;
+  padding: 5px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  background-position: center;
+}
+.close-icon {
+  background-image: url('../../assets/icons/close-icon.svg');
+}
+.all-icon {
+  background-image: url('../../assets/icons/all-icon.svg');
+}
+.star-icon {
+  background-image: url('../../assets/icons/star-icon.svg');
+}
+
+.star-disabled-icon {
+  background-image: url('../../assets/icons/star-disabled-icon.svg');
+}
+
+.star-active-icon {
+  background-image: url('../../assets/icons/star-active-icon.svg');
+}
+
+.search-icon {
+  background-image: url('../../assets/icons/search-icon.svg');
+}
+@media (max-width: 427px) {
+  .container {
+    max-width: 90%;
+  }
+}
