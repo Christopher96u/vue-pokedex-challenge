@@ -1,4 +1,4 @@
-# vue-pokedex-challenge
+# Deployed on : [Configuration Reference](https://vuex-pokedex.herokuapp.com/)
 
 ## Project setup
 ```
