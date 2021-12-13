@@ -40,6 +40,9 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../assets/scss/_variable.scss";
+.pokemon-row .favorite {
+  cursor: pointer;
+}
 .pokemon-row {
   background-color: #ffffff;
   padding: 15px;
@@ -57,8 +60,5 @@ export default {
   background-color: $light-gray-color;
   border-radius: 50%;
   padding: 7.5px;
-}
-.pokemon-row .favorite {
-  cursor: pointer;
 }
 </style>

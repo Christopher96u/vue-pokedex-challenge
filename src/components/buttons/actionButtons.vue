@@ -43,7 +43,6 @@ export default {
       "changeStatusFavoriteButton",
     ]),
     showAllPokemons() {
-      console.log("mostrar todos los pokemones");
       this.showAllPokemonsByDefault(true);
       if (!this.buttonAllIsActive) {
         this.changeStatusAllIsActiveButton();
@@ -51,7 +50,6 @@ export default {
       }
     },
     showFavoritePokemons() {
-      console.log("mostrar pokemons favoritos filtrados");
       this.showAllPokemonsByDefault(false);
       if (!this.buttonFavoriteIsActive) {
         this.changeStatusFavoriteButton();

@@ -49,7 +49,6 @@ export default {
   },
   methods: {
     emitClick() {
-      console.log("emitClick from mainButton");
       this.$emit("emit-click", true);
     },
   },

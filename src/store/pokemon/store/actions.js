@@ -1,6 +1,6 @@
 import { getPokemons, getPokemon } from '../../../services/pokemon/pokemon.service';
 export default {
-  fetchAllPokemons: async ({ dispatch, commit, state }, currentPage) => {
+  fetchAllPokemons: async ({ commit }, currentPage) => {
     try {
       const data = await getPokemons(currentPage);
       commit('FETCH_ALL_POKEMONS', data);

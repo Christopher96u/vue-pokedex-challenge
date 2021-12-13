@@ -1,5 +1,6 @@
+const BASE_API_URL = 'https://pokeapi.co/api/v2/pokemon';
 export const getPokemons = async (page) => {
-  return fetch(`https://pokeapi.co/api/v2/pokemon?offset=${page}&limit=10`)
+  return fetch(`${BASE_API_URL}?offset=${page}&limit=10`)
     .then((res) => res.json())
     .then((data) => {
       return data.results.map((pokemon) => {
@@ -16,7 +17,7 @@ export const getPokemons = async (page) => {
 };
 
 export const getPokemon = async (name) => {
-  return fetch(`https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`)
+  return fetch(`${BASE_API_URL}/${name.toLowerCase()}`)
     .then((res) => res.json())
     .then((data) => {
       return data;

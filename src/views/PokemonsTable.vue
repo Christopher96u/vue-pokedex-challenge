@@ -1,6 +1,9 @@
 <template>
   <div class="pokemons-table">
-    <div>
+    <template v-if="isLoading">
+      <loader />
+    </template>
+    <div v-if="!isLoading">
       <main-input @search-pokemon="searchPokemon" />
       <template v-if="pokemonsByStatus.length">
         <div class="container container-table">
@@ -16,7 +19,7 @@
         <div ref="observer"></div>
         <action-buttons />
       </template>
-      <template v-else>
+      <template v-if="filteredPokemons.length === 0">
         <main-conten-welcome
           :type="type"
           :title="title"
@@ -43,6 +46,7 @@ import MainContenWelcome from "../components/home/mainContentWelcome.vue";
 import PokemonItem from "../components/pokemonsTable/PokemonItem.vue";
 import ActionButtons from "../components/buttons/actionButtons.vue";
 import PokemonModal from "../components/pokemonsTable/pokemonModal.vue";
+import Loader from "../components/shared/loader.vue";
 export default {
   name: "PokemonsTable",
   components: {
@@ -51,6 +55,7 @@ export default {
     ActionButtons,
     PokemonModal,
     MainContenWelcome,
+    Loader,
   },
   computed: {
     ...mapGetters("pokemon", [
@@ -74,6 +79,7 @@ export default {
       showFilteredPokemons: false,
       showModal: false,
       isFavorite: false,
+      isLoading: false,
       page: 0,
       observer: null,
       type: "NotFound",
@@ -85,7 +91,9 @@ export default {
   async mounted() {
     await this.fetchAllPokemons(this.offset());
     this.observer = new IntersectionObserver(this.handleObserver);
-    this.observer.observe(this.$refs.observer);
+    if (this.$refs.observer) {
+      this.observer.observe(this.$refs.observer);
+    }
   },
   destroyed() {
     this.observer.disconnect();
@@ -98,24 +106,29 @@ export default {
       "cleanDetailModal",
       "filteredPokemonByName",
       "clearFilteredPokemons",
+      "showAllPokemonsByDefault",
+      "changeStatusAllIsActiveButton",
+      "changeStatusFavoriteButton",
     ]),
     offset() {
       return this.page * 10;
     },
     handleObserver(entries) {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          this.page++;
-          this.fetchAllPokemons(this.offset());
-        }
-      });
+      const entry = entries[0];
+      if (entry.isIntersecting) {
+        this.page++;
+        this.fetchAllPokemons(this.offset());
+      }
     },
     async searchPokemon(e) {
-      this.showFilteredPokemons = true;
-      await this.filteredPokemonByName(e);
+      this.observer.disconnect();
+      if (e.length > 3) {
+        this.showFilteredPokemons = true;
+        await this.filteredPokemonByName(e);
+      }
       if (e === "") {
-        console.log("entro if del e");
         this.showFilteredPokemons = false;
+        this.observer.observe(this.$refs.observer);
         this.clearFilteredPokemons();
       }
     },
@@ -136,6 +149,13 @@ export default {
       this.cleanDetailModal();
     },
     goBack() {
+      this.showAllPokemonsByDefault(true);
+      if (!this.buttonAllIsActive) {
+        this.changeStatusAllIsActiveButton();
+      }
+      if (!this.buttonFavoriteIsActive) {
+        this.changeStatusFavoriteButton();
+      }
       this.$router.push("/home");
     },
   },

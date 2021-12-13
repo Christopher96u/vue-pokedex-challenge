@@ -57,7 +57,6 @@ export default {
   },
   methods: {
     emitClick() {
-      console.log("emitClick from mainContentWelcome");
       this.$emit("emit-click", true);
     },
   },
