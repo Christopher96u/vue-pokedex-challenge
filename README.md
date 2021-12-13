@@ -1,4 +1,4 @@
-# Deployed on : [Configuration Reference](https://vuex-pokedex.herokuapp.com/)
+# Deployed on Heroku : [Go to Vue Pokedex](https://vuex-pokedex.herokuapp.com/)
 
 ## Project setup
 ```
