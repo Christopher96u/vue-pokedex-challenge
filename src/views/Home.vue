@@ -2,6 +2,7 @@
   <div class="container">
     <pikachu-welcome />
     <main-content-welcome
+      :type="type"
       :title="title"
       :subtitle="subtitle"
       :textButton="textButton"
@@ -23,6 +24,7 @@ export default {
   },
   data() {
     return {
+      type: "Welcome",
       title: "Welcome to Pokédex",
       subtitle:
         "The digital encyclopedia created by Professor Oak is an invaluable tool to Trainers in the Pokémon world.",

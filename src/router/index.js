@@ -13,8 +13,8 @@ const routes = [
   },
   {
     path: '/pokemons',
-    name: 'Pokemons',
-    component: () => import('../views/Pokemons.vue'),
+    name: 'PokemonsTable',
+    component: () => import('../views/PokemonsTable.vue'),
   },
 ];
 

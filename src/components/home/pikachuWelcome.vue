@@ -17,7 +17,7 @@ export default {
 .container-image {
   position: relative;
   height: 350px;
-  margin-top: 80px;
+  margin-top: 83px;
   display: flex;
   justify-content: center;
   align-items: center;
